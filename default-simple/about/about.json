@@ -1,0 +1,17 @@
+{
+    "author_name": "Grant King",
+    "blog_title": "simple blog",
+    "openmoji_icon": "1FAB7.svg",
+    "blocks": [
+        {"type": "paragraph", "content": "About this blog"},
+        {"type": "heading-2", "content": "About this blog"},
+        {"type": "heading-3", "content": "About this blog"},
+        {"type": "heading-4", "content": "About this blog"},
+        {"type": "paragraph", "content": "About this blog"},
+        {"type": "image", "content": "../assets/img/kitten.webp"}
+    ],
+    "footer_links": [
+        {"url": "https://kingbook.org", "text": "King Book"},
+        {"url": "https://grantking.dev", "text": "grantking.dev"}
+    ]
+}

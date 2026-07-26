@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../../assets/js/tailwind.js"></script>
+    <title>[[ARTICLE_TITLE]]</title>
+    <meta name="description" content="[[ARTICLE_PREVIEW]]">
+    <meta property="og:title" content="[[ARTICLE_TITLE]]">
+    <meta property="og:description" content="[[ARTICLE_PREVIEW]]">
+    <meta property="og:image" content="../../assets/img/1FAB7.svg">
+    <link rel="icon" type="image/svg" href="../../assets/img/1FAB7.svg">
+</head>
+
+<body class="font-mono bg-black/10">
+    <nav class="bg-black/80 text-center">
+        <a href="/">
+            <div class="shadow-sm shadow-black/20">
+                <div class="border-double border-y-2"></div>
+                <div class="border-double border-y-4"></div>
+                <div class="border-double border-y-4"></div>
+                <div class="border-double border-y-2"></div>
+            </div>
+            <div class="h-4"></div>
+
+            <div class="grid grid-cols-1 max-w-2xl mx-auto">
+                <div class="flex gap-4 items-center">
+                    <img src="../../assets/img/E24D.svg" class="bg-white/80 rounded h-16">
+                    <h1 class="text-2xl text-white font-black">articles</h1>
+                </div>
+
+            </div>
+
+            <div class="h-4"></div>
+
+            <div class="shadow-sm shadow-black/20">
+                <div class="border-double border-y-2"></div>
+                <div class="border-double border-y-4"></div>
+                <div class="border-double border-y-4"></div>
+                <div class="border-double border-y-2"></div>
+            </div>
+        </a>
+    </nav>
+    <div class="h-16"></div>
+    <main class="max-w-2xl mx-auto">
+        <p id="el_publish_date" class="">07/20/2026</p>
+        <div class="h-4"></div>
+        <h1 id="el_title" class="text-5xl">Star Trek TNG: Introducing the Borg</h1>
+        <div class="h-8"></div>
+        <div class="border-double border-4 rounded"></div>
+        <div class="h-16"></div>
+        <div id="el_blocks_list" class="grid grid-cols-1 gap-8 text-lg">
+            <template id="el_block_template">
+                <div>
+                </div>
+            </template>
+        </div>
+        <div class="h-32"></div>
+        <div class="border-4 border-lime-700 rounded"></div>
+    </main>
+    <div class="h-64"></div>
+    <footer>
+    </footer>
+    <script type="module">
+        import { add_footer } from "../../assets/js/footer.js"
+        add_footer()
+
+        const blocks_data_response = await fetch('./article.json')
+        const article_data = await blocks_data_response.json()
+
+        const el_publish_date = document.getElementById("el_publish_date")
+        const formatted_date = new Date(Number(article_data["publish_date"])).toLocaleDateString()
+        el_publish_date.innerText = formatted_date
+
+        const el_title = document.getElementById("el_title")
+        el_title.innerText = article_data["title"]
+
+        const el_block_template = document.getElementById("el_block_template")
+        const el_block_content = el_block_template.content
+
+        for (const block of article_data["blocks"]) {
+            const block_clone = document.importNode(el_block_content, true)
+            const block_div = block_clone.querySelector("div")
+            var element
+            if (block["type"] == "paragraph") {
+                element = document.createElement("p")
+                element.innerText = block["content"]
+            }
+            if (block["type"] == "heading-2") {
+                element = document.createElement("h2")
+                element.innerText = block["content"]
+                element.classList.add("text-4xl")
+            }
+            if (block["type"] == "heading-3") {
+                element = document.createElement("h3")
+                element.innerText = block["content"]
+                element.classList.add("text-3xl")
+            }
+            if (block["type"] == "heading-4") {
+                element = document.createElement("h4")
+                element.innerText = block["content"]
+                element.classList.add("text-2xl")
+            }
+            if (block["type"] == "image") {
+                element = document.createElement("img")
+                element.src = block["content"]
+                element.classList.add("rounded")
+            }
+            block_div.appendChild(element)
+            const el_blocks_list = document.getElementById("el_blocks_list")
+            el_blocks_list.appendChild(block_clone)
+            console.log(block)
+        }
+    
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+{
+    "title": "Star Trek TNG: Introducing the Borg",
+    "publish_date": "1784997087200",
+    "tagline": "hello hive",
+    "preview": "“Interesting, isn’t it? Not a he, not a she, not like anything you’ve ever seen. An enhanced humanoid.” - Q",
+    "blocks": [
+        {
+            "type": "paragraph",
+            "content": "“Interesting, isn’t it? Not a he, not a she, not like anything you’ve ever seen. An enhanced humanoid.” - Q"
+        },
+        {
+            "type": "heading-2",
+            "content": "Are you watching Star Trek: the Next Generation? Are you trying to recall, what is the Borg? Here I’ll briefly explore the lore behind the Borg and their origin story in season two of TNG."
+        },
+        {
+            "type": "heading-3",
+            "content": "The Borg are an electronically-connected collective hive mind. They are the most destructive powerful threat that the Enterprise encounters in the early seasons."
+        },
+        {
+            "type": "heading-4",
+            "content": "The Borg first appear to us in the episode “Q Who” which is the sixteenth episode of season two. You remember Q, right? He’s the god-like troublesome imp character that takes over half of the pilot episode as well as being a recurring presence in the series."
+        },
+        {
+            "type": "paragraph",
+            "content": "In this episode, Q mischievously kicks the starship Enterprise far out into an unknown area of the galaxy; one that is 3 years away from the closest federation star-base. His excuses for doing this are complex and not the focus of this article, so we’ll just look at the result of his actions rather than his meandering and manipulative justifications for constructing this crisis."
+        },
+        {
+            "type": "image",
+            "content": "../../assets/img/kitten.webp"
+        }
+    ]
+}

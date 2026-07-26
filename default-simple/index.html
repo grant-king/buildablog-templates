@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./assets/js/tailwind.js"></script>
+    <title>[[BLOG_TITLE]]</title>
+    <meta id="description" name="description" content="[[BLOG_TITLE]] by [[AUTHOR_NAME]]">
+    <meta property="og:title" content="[[BLOG_TITLE]]">
+    <meta property="og:description" content="[[BLOG_TITLE]] by [[AUTHOR_NAME]]">
+    <meta property="og:image" content="./assets/img/1FAB7.svg">
+    <link rel="icon" type="image/svg" href="./assets/img/1FAB7.svg">
+</head>
+
+<body class="font-mono bg-black/10">
+    <header class="bg-black/80 text-center">
+        <div class="shadow-lg shadow-black">
+            <div class="border-double border-y-2"></div>
+            <div class="border-double border-y-4"></div>
+            <div class="border-double border-y-8"></div>
+            <div class="border-double border-y-8"></div>
+            <div class="border-double border-y-4"></div>
+            <div class="border-double border-y-2"></div>
+        </div>
+        <div class="h-8"></div>
+
+        <h1 id="el_blog_title" class="text-4xl p-2 text-white font-black scale-y-150 tracking-widest">Simple Blog Example</h1>
+
+        <div class="h-8"></div>
+
+        <div class="shadow-lg shadow-black">
+            <div class="border-double border-y-2"></div>
+            <div class="border-double border-y-4"></div>
+            <div class="border-double border-y-8"></div>
+            <div class="border-double border-y-8"></div>
+            <div class="border-double border-y-4"></div>
+            <div class="border-double border-y-2"></div>
+        </div>
+    </header>
+    <div class="h-16"></div>
+    <main class="max-w-2xl mx-auto min-h-lvh">
+        <div class="border-double border-4 rounded"></div>
+        <h2 class="text-4xl m-2">all articles</h2>
+        <div class="border-double border-4 rounded"></div>
+        <div class="h-16"></div>
+        <div id="el_articles_list" class="grid grid-cols-1 gap-8">
+            <template id="el_article_entry">
+                <a href="articles/article_0001/" class="grid grid-cols-1 gap-2">
+                    <p class="text-2xl">
+                        Star Trek TNG: Introducing the Borg
+                    </p>
+                    <p class="p-2 border-2 rounded border-lime-700">
+                        07/20/2026 :: hello hive ::
+                    </p>
+                    <p>
+                        “Interesting, isn’t it? Not a he, not a she, not like anything you’ve ever seen. An enhanced
+                        humanoid.” - Q
+                    </p>
+                </a>
+                <div class="border-4 border-lime-700 rounded"></div>
+            </template>
+        </div>
+    </main>
+    <div class="h-64"></div>
+    <footer>
+
+    </footer>
+    <script type="module">
+        import { add_footer } from "./assets/js/footer.js"
+        add_footer()
+
+        const about_data_response = await fetch('./about/about.json')
+        const about_data = await about_data_response.json()
+
+        const el_blog_title = document.getElementById("el_blog_title")
+        el_blog_title.innerText = about_data["blog_title"]
+
+        const articles_data_response = await fetch('./articles/articles.json')
+        const articles_data = await articles_data_response.json()
+
+        const el_entry_template = document.getElementById("el_article_entry")
+        const entry_content = el_entry_template.content
+
+        for (const article_data of articles_data){
+            if (article_data["publish_date"] < Date.now()){
+                const formatted_date = new Date(Number(article_data["publish_date"])).toLocaleDateString()
+                const entry_clone = document.importNode(entry_content, true)
+                const entry_paragraphs = entry_clone.querySelectorAll("p")
+                entry_paragraphs[0].innerText = article_data["title"]
+                entry_paragraphs[1].innerText = `${formatted_date} :: ${article_data["tagline"]} ::`
+                entry_paragraphs[2].innerText = article_data["preview"]
+                const entry_link = entry_clone.querySelector("a")
+                entry_link.href = `articles/${article_data["slug"]}/`
+                
+                const el_articles_list = document.getElementById("el_articles_list")
+                el_articles_list.appendChild(entry_clone)
+            }
+        }
+        
+    </script>
+</body>
+
+</html>

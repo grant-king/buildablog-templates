@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../assets/js/tailwind.js"></script>
+    <title>about [[BLOG_TITLE]]</title>
+    <meta id="description" name="description" content="learn more about [[BLOG_TITLE]]">
+    <link id="icon" rel="icon" type="image/svg" href="../assets/img/1FAB7.svg">
+    <meta id="og_title" property="og:title" content="[[BLOG_TITLE]]">
+    <meta id="og_description" property="og:description" content="learn more about [[BLOG_TITLE]]">
+    <meta id="og_icon" property="og:image" content="../assets/img/1FAB7.svg">
+</head>
+
+<body class="font-mono bg-black/10">
+    <header class="bg-black/80 text-center">
+        <a href="/">
+            <div class="shadow-lg shadow-black">
+                <div class="border-double border-y-2"></div>
+                <div class="border-double border-y-4"></div>
+                <div class="border-double border-y-8"></div>
+                <div class="border-double border-y-8"></div>
+                <div class="border-double border-y-4"></div>
+                <div class="border-double border-y-2"></div>
+            </div>
+            <div class="h-8"></div>
+            
+            <h1 id="el_blog_title" class="text-4xl p-2 text-white font-black scale-y-150 tracking-widest">blog title</h1>
+            
+            <div class="h-8"></div>
+            
+            <div class="shadow-lg shadow-black">
+                <div class="border-double border-y-2"></div>
+                <div class="border-double border-y-4"></div>
+                <div class="border-double border-y-8"></div>
+                <div class="border-double border-y-8"></div>
+                <div class="border-double border-y-4"></div>
+                <div class="border-double border-y-2"></div>
+            </div>
+        </a>
+    </header>
+    <div class="h-16"></div>
+    <main class="max-w-2xl mx-auto min-h-lvh">
+        <h1 id="el_about_title" class="text-5xl">About this blog</h1>
+        <div class="h-4"></div>
+        <p id="el_author_name">by author name</p>
+        <div class="h-8"></div>
+        <div class="border-double border-4 rounded"></div>
+        <div class="h-16"></div>
+        <div id="el_blocks_list" class="grid grid-cols-1 gap-8 text-lg">
+            <template id="el_block_template">
+                <div>
+                </div>
+            </template>
+        </div>
+        <div class="h-32"></div>
+        <div class="border-4 border-lime-700 rounded"></div>
+        <div class="h-16"></div>
+        <div class="grid grid-cols-1 gap-4 text-xs">
+            <div>
+                Openmoji illustrations are designed by
+                <a href="https://openmoji.org/faq/" class="text-sky-800">
+                    OpenMoji
+                </a>
+                – the open-source emoji and icon project. License: CC BY-SA 4.0
+            </div>
+            <div>
+                This website's
+                <a href="https://github.com/grant-king/buildablog-templates/" class="text-sky-800">
+                    blog template
+                </a>
+                was designed by
+                <a href="https://grantking.dev/" class="text-sky-800">
+                    Grant King
+                </a>
+                – License: CC0 1.0 Universal
+            </div>
+            <div>
+                This website was created with the help of the
+                <a href="https://web.kingbook.org/hubs/tools/" class="text-sky-800">
+                    build-a-blog
+                </a>
+                tool, provided by
+                <a href="https://kingbook.org/" class="text-sky-800">
+                    King Book
+                </a>
+                Independent Web Library
+            </div>
+
+        </div>
+        <div class="h-16"></div>
+        <div class="border-4 border-lime-700 rounded"></div>
+        <div class="h-32"></div>
+    </main>
+    <div class="h-64"></div>
+    <footer>
+    </footer>
+    <script type="module">
+        import { add_footer } from "../assets/js/footer.js"
+        add_footer()
+        const about_data_response = await fetch('./about.json')
+        const about_data = await about_data_response.json()
+
+        const el_block_template = document.getElementById("el_block_template")
+        const el_block_content = el_block_template.content
+
+        const el_blog_title = document.getElementById("el_blog_title")
+        el_blog_title.innerText = about_data["blog_title"]
+        
+        const el_author_name = document.getElementById("el_author_name")
+        el_author_name.innerText =  `by ${about_data["author_name"]}`
+
+        const el_about_title = document.getElementById("el_about_title")
+        el_about_title.innerText = `About ${about_data["blog_title"]}`
+
+        for (const block of about_data["blocks"]) {
+            const block_clone = document.importNode(el_block_content, true)
+            const block_div = block_clone.querySelector("div")
+            var element
+            if (block["type"] == "paragraph") {
+                element = document.createElement("p")
+                element.innerText = block["content"]
+            }
+            if (block["type"] == "heading-2") {
+                element = document.createElement("h2")
+                element.innerText = block["content"]
+                element.classList.add("text-4xl")
+            }
+            if (block["type"] == "heading-3") {
+                element = document.createElement("h3")
+                element.innerText = block["content"]
+                element.classList.add("text-3xl")
+            }
+            if (block["type"] == "heading-4") {
+                element = document.createElement("h4")
+                element.innerText = block["content"]
+                element.classList.add("text-2xl")
+            }
+            if (block["type"] == "image") {
+                element = document.createElement("img")
+                element.src = block["content"]
+                element.classList.add("rounded")
+            }
+            block_div.appendChild(element)
+            const el_blocks_list = document.getElementById("el_blocks_list")
+            el_blocks_list.appendChild(block_clone)
+            console.log(block)
+        }
+
+    </script>
+</body>
+
+</html>
