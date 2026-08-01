@@ -27,6 +27,10 @@
         {
             "type": "image",
             "content": "../../assets/img/kitten.webp"
+        },
+        {
+            "type": "link",
+            "content": "https://kingbook.org King Book Independent Web Library"
         }
     ]
 }

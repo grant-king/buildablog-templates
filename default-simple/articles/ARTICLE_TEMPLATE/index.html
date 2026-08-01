@@ -44,9 +44,9 @@
     </nav>
     <div class="h-16"></div>
     <main class="max-w-2xl mx-auto">
-        <p id="el_publish_date" class="">07/20/2026</p>
+        <p id="el_publish_date" class="">MM/DD/YYYY</p>
         <div class="h-4"></div>
-        <h1 id="el_title" class="text-5xl">Star Trek TNG: Introducing the Borg</h1>
+        <h1 id="el_title" class="text-5xl">Title Loading...</h1>
         <div class="h-8"></div>
         <div class="border-double border-4 rounded"></div>
         <div class="h-16"></div>
@@ -107,12 +107,24 @@
                 element.src = block["content"]
                 element.classList.add("rounded")
             }
+            if (block["type"] == "link") {
+                element = document.createElement("a")
+                const contents = block["content"].split(" ")
+                element.href = contents[0]
+                var link_text = ''
+                for (const word of contents.slice(1, contents.length)) {
+                    link_text += ` ${word}`
+                }
+                element.classList.add(..."font-mono text-sky-800 font-bold border-b-1".split(" "))
+                element.innerText = `🌐 ${link_text}`
+                element.target = 'article_link'
+            }
             block_div.appendChild(element)
             const el_blocks_list = document.getElementById("el_blocks_list")
             el_blocks_list.appendChild(block_clone)
             console.log(block)
         }
-    
+
     </script>
 </body>
 

@@ -25,11 +25,12 @@
                 <div class="border-double border-y-2"></div>
             </div>
             <div class="h-8"></div>
-            
-            <h1 id="el_blog_title" class="text-4xl p-2 text-white font-black scale-y-150 tracking-widest">blog title</h1>
-            
+
+            <h1 id="el_blog_title" class="text-4xl p-2 text-white font-black scale-y-150 tracking-widest">title loading...
+            </h1>
+
             <div class="h-8"></div>
-            
+
             <div class="shadow-lg shadow-black">
                 <div class="border-double border-y-2"></div>
                 <div class="border-double border-y-4"></div>
@@ -42,9 +43,9 @@
     </header>
     <div class="h-16"></div>
     <main class="max-w-2xl mx-auto min-h-lvh">
-        <h1 id="el_about_title" class="text-5xl">About this blog</h1>
+        <h1 id="el_about_title" class="text-5xl">About loading...</h1>
         <div class="h-4"></div>
-        <p id="el_author_name">by author name</p>
+        <p id="el_author_name">author loading...</p>
         <div class="h-8"></div>
         <div class="border-double border-4 rounded"></div>
         <div class="h-16"></div>
@@ -107,9 +108,9 @@
 
         const el_blog_title = document.getElementById("el_blog_title")
         el_blog_title.innerText = about_data["blog_title"]
-        
+
         const el_author_name = document.getElementById("el_author_name")
-        el_author_name.innerText =  `by ${about_data["author_name"]}`
+        el_author_name.innerText = `by ${about_data["author_name"]}`
 
         const el_about_title = document.getElementById("el_about_title")
         el_about_title.innerText = `About ${about_data["blog_title"]}`
@@ -141,6 +142,18 @@
                 element = document.createElement("img")
                 element.src = block["content"]
                 element.classList.add("rounded")
+            }
+            if (block["type"] == "link") {
+                element = document.createElement("a")
+                const contents = block["content"].split(" ")
+                element.href = contents[0]
+                var link_text = ''
+                for (const word of contents.slice(1, contents.length)) {
+                    link_text += ` ${word}`
+                }
+                element.classList.add(..."font-mono text-sky-800 font-bold border-b-1".split(" "))
+                element.innerText = `🌐 ${link_text}`
+                element.target = 'article_link'
             }
             block_div.appendChild(element)
             const el_blocks_list = document.getElementById("el_blocks_list")

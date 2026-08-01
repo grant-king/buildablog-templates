@@ -8,7 +8,8 @@
         {"type": "heading-3", "content": "About this blog"},
         {"type": "heading-4", "content": "About this blog"},
         {"type": "paragraph", "content": "About this blog"},
-        {"type": "image", "content": "../assets/img/kitten.webp"}
+        {"type": "image", "content": "../assets/img/kitten.webp"},
+        {"type": "link", "content": "https://kingbook.org King Book Independent Web Library"}
     ],
     "footer_links": [
         {"url": "https://kingbook.org", "text": "King Book"},
