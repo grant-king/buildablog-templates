@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../../assets/js/tailwind.js"></script>
+    <link rel="stylesheet" href="../../assets/css/tailwind.css">
     <title>[[ARTICLE_TITLE]]</title>
     <meta name="description" content="[[ARTICLE_PREVIEW]]">
     <meta property="og:title" content="[[ARTICLE_TITLE]]">
@@ -105,7 +105,7 @@
             if (block["type"] == "image") {
                 element = document.createElement("img")
                 element.src = block["content"]
-                element.classList.add("rounded")
+                element.classList.add("rounded", "mx-auto")
             }
             if (block["type"] == "link") {
                 element = document.createElement("a")
