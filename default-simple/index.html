@@ -50,7 +50,7 @@
                     <p class="text-2xl">
                         Star Trek TNG: Introducing the Borg
                     </p>
-                    <p class="p-2 border-2 rounded border-lime-700">
+                    <p class="p-2 border-2 rounded">
                         07/20/2026 :: hello hive ::
                     </p>
                     <p>
@@ -58,7 +58,7 @@
                         humanoid.” - Q
                     </p>
                 </a>
-                <div class="border-4 border-lime-700 rounded"></div>
+                <div class="border-4 rounded"></div>
             </template>
         </div>
     </main>
@@ -89,9 +89,13 @@
                 const entry_paragraphs = entry_clone.querySelectorAll("p")
                 entry_paragraphs[0].innerText = article_data["title"]
                 entry_paragraphs[1].innerText = `${formatted_date} :: ${article_data["tagline"]} ::`
+                entry_paragraphs[1].style.borderColor = about_data["accent_color"]
+
                 entry_paragraphs[2].innerText = article_data["preview"]
                 const entry_link = entry_clone.querySelector("a")
                 entry_link.href = `articles/${article_data["slug"]}/`
+                const divider_div = entry_clone.querySelector("div")
+                divider_div.style.borderColor = about_data["accent_color"]
                 
                 const el_articles_list = document.getElementById("el_articles_list")
                 el_articles_list.appendChild(entry_clone)
