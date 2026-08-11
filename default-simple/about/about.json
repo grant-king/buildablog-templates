@@ -1,6 +1,7 @@
 {
     "author_name": "Grant King",
     "blog_title": "simple blog",
+    "accent_color": "oklch(53.2% 0.157 131.589)",
     "openmoji_icon": "1FAB7.svg",
     "blocks": [
         {"type": "paragraph", "content": "About this blog"},
