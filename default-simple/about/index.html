@@ -56,7 +56,7 @@
             </template>
         </div>
         <div class="h-32"></div>
-        <div class="border-4 border-lime-700 rounded"></div>
+        <div class="border-4 border-accent-color rounded"></div>
         <div class="h-16"></div>
         <div class="grid grid-cols-1 gap-4 text-xs">
             <div>
@@ -91,7 +91,7 @@
 
         </div>
         <div class="h-16"></div>
-        <div class="border-4 border-lime-700 rounded"></div>
+        <div class="border-4 border-accent-color rounded"></div>
         <div class="h-32"></div>
     </main>
     <div class="h-64"></div>
@@ -102,6 +102,11 @@
         add_footer()
         const about_data_response = await fetch('./about.json')
         const about_data = await about_data_response.json()
+
+        const els_accent_border = document.querySelectorAll(".border-accent-color")
+        for (const el_accent_border of els_accent_border){
+            el_accent_border.style.borderColor = about_data["accent_color"]
+        }
 
         const el_block_template = document.getElementById("el_block_template")
         const el_block_content = el_block_template.content
