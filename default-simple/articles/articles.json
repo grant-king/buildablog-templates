@@ -12,5 +12,12 @@
         "tagline": "hello hive",
         "preview": "“Interesting, isn’t it? Not a he, not a she, not like anything you’ve ever seen. An enhanced humanoid.” - Q",
         "slug": "ARTICLE_TEMPLATE"
+    },
+    {
+        "title": "Star Trek TNG: Introducing the Borg",
+        "publish_date": 1784997087200,
+        "tagline": "hello hive",
+        "preview": "asset::kitten.webp",
+        "slug": "ARTICLE_TEMPLATE"
     }
 ]
